@@ -10,22 +10,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
           persist-credentials: false
-      - name: Generate Githup App Token
-        id: generate_token
-        uses: tibdex/github-app-token@v1
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          installation_id: ${{ secrets.INSTALLATION_ID }}
-          private_key:  ${{ secrets.APP_PRIVATE_KEY }}
+          fetch-depth: 0
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
       - name: Use tag with variables
         run: export V=${{steps.tag.outputs.tag}}
-      - name: Script
+      - name: Create local changes
         run: |
           export V=${{steps.tag.outputs.tag}}
           echo $V
@@ -33,7 +25,6 @@ jobs:
           cat Chart.yaml
       - name: Commit files
         run: |
-          git checkout master
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -a -m "Add changes"
@@ -41,4 +32,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: master
-          github_token: ${{ env.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
