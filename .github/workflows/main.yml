@@ -15,9 +15,12 @@ jobs:
       - name: ls
         run: ls -la
       - name: Use tag
-        run: echo ${{steps.tag.outputs.tag}} > result.txt && \
-             cat ./result.txt #&& \
-             #sed 's/version:.*/ $(cat result.txt)/g' Chart.yaml > Chart2.yaml && \
-             #cat Chart2.yaml
+        run: echo ${{steps.tag.outputs.tag}} > result.txt
+      - name: Cat result.txt
+        run: cat ./result.txt
+      - name: Sed
+        run: sed 's/version:.*/ $(cat result.txt)/g' Chart.yaml
+      - name: Cat Chart.yaml
+        run: cat Chart.yaml
         #sed -i '' -e 's/version:/$(cat result.txt)/g' Chart.yaml > Chart2.yaml
 
