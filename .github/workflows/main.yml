@@ -19,7 +19,7 @@ jobs:
       - name: ls 2
         run: ls -la
       - name: Change tag in chart
-        run: sed 's/version:/$(cat result.txt)/g' Chart.yaml > Chart.yaml
+        run: sed 's/version: .*/$(cat result.txt)/g' Chart.yaml > Chart.yaml
         #run: sed -i '' -e 's/version:/$(cat result.txt)/g' Chart.yaml > Chart2.yaml
       - name: Cat
         run: cat ./Chart.yaml
