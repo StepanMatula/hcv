@@ -19,6 +19,6 @@ jobs:
       - name: Change tag in chart
         uses: cschleiden/replace-tokens@v1
         with:
-          files: '["Chart.yaml"]'
+          files: '["./Chart.yaml"]'
         env:
           version: 222 ####${{steps.tag.outputs.tag}}
