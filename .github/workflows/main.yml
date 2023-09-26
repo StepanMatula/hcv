@@ -18,3 +18,5 @@ jobs:
         run: echo ${{steps.tag.outputs.tag}} > result.txt
       - name: Change tag in chart
         run: sed 's/version:/$(cat ./result)/g' ./Chart.yaml > ./Chart.yaml
+      - name: Cat
+        run: cat ./Chart.yaml
