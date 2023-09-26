@@ -17,5 +17,4 @@ jobs:
         with:
           files: '["Chart.yaml"]'
         env:
-         version: ${{steps.tag.outputs.tag}}
-        run: echo ${{steps.tag.outputs.tag}}
+         version: 222 ####${{steps.tag.outputs.tag}}
