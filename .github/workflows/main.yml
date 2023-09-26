@@ -16,8 +16,8 @@ jobs:
         run: ls -la
       - name: Use tag
         run: echo ${{steps.tag.outputs.tag}} > result.txt
-      - name: ls 2
-        run: ls -la
+      - name: cat
+        run: cat result.txt
       - name: Change tag in chart
         run: sed 's/version: .*/$(cat result.txt)/g' Chart.yaml > Chart.yaml
         #run: sed -i '' -e 's/version:/$(cat result.txt)/g' Chart.yaml > Chart2.yaml
