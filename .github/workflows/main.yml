@@ -20,3 +20,5 @@ jobs:
           echo $V
           sed -i "s/version:.*/version: $V/g" Chart.yaml
           cat Chart.yaml
+      - name: Cat Chart.yaml
+        run: cat Chart.yaml
