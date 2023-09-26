@@ -12,9 +12,11 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
-        with:
-          script: |
-            export V=${{steps.tag.outputs.tag}}
-            echo $V
-            sed 's/version:.*/ $V/g' Chart.yaml
-            cat Chart.yaml
+      - name: Use tag with variables
+        run: export V=${{steps.tag.outputs.tag}}
+      - name: Script
+        run: |
+          export V=${{steps.tag.outputs.tag}}
+          echo $V
+          sed 's/version:.*/ $V/g' Chart.yaml
+          cat Chart.yaml
