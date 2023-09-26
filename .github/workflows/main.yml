@@ -12,6 +12,14 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+          persist-credentials: false
+      - name: Generate Githup App Token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          installation_id: ${{ secrets.INSTALLATION_ID }}
+          private_key:  ${{ secrets.APP_PRIVATE_KEY }}
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
@@ -33,4 +41,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: master
-          force_with_lease: true
+          github_token: ${{ env.TOKEN }}
