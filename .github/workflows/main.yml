@@ -23,8 +23,6 @@ jobs:
           echo $V
           sed -i "s/version:.*/version: $V/g" Chart.yaml
           cat Chart.yaml
-      - name: Cat Chart.yaml
-        run: cat Chart.yaml
       - name: Commit files
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
@@ -33,4 +31,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
+          branch: ${{ github.head_ref }}
           force_with_lease: true
