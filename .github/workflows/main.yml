@@ -16,6 +16,7 @@ jobs:
         run: export V=${{steps.tag.outputs.tag}}
       - name: Script
         run: |
+          export V=${{steps.tag.outputs.tag}}
           echo $V
           sed "s/version:.*/ $V/g" Chart.yaml
           cat Chart.yaml
