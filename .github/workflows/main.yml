@@ -12,17 +12,10 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
-      - name: ls
-        run: ls -la
-     # - name: Use tag
-     #   run: echo ${{steps.tag.outputs.tag}} > result.txt
-      - name: Use tag with variables
-        run: export V=${{steps.tag.outputs.tag}}
-      - name: print $V
-        run: echo $V
-     # - name: Cat result.txt
-     #   run: cat ./result.txt
-      - name: Sed
-        run: sed 's/version:.*/ $V/g' Chart.yaml
-      - name: Cat Chart.yaml
-        run: cat Chart.yaml
+      - name: Script
+        with:
+          script: |
+            export V=${{steps.tag.outputs.tag}}
+            echo $V
+            sed 's/version:.*/ $V/g' Chart.yaml
+            cat Chart.yaml
