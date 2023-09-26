@@ -17,5 +17,5 @@ jobs:
       - name: Script
         run: |
           echo $V
-          sed 's/version:.*/ $V/g' Chart.yaml
+          sed "s/version:.*/ $V/g" Chart.yaml
           cat Chart.yaml
