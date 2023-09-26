@@ -12,3 +12,9 @@ jobs:
         uses: dawidd6/action-get-tag@v1
       - name: Use tag
         run: echo ${{steps.tag.outputs.tag}}
+      - name: Change tag in chart
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["**/*.js"]'
+        env:
+         version: ${{steps.tag.outputs.tag}}
