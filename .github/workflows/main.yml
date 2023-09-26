@@ -4,10 +4,14 @@ on:
     tags:
       - '*'
 jobs:
-  github-example-tags:
+  github_example_tags:
     runs-on: ubuntu-latest
     steps:
-     - name: GitHub Tag Name example
-       run: |
-         echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-         echo "Tag name from github.ref_name: ${{  github.ref_name }}"
+      - name: Get tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          # Optionally strip `v` prefix
+          strip_v: true
+      - name: Use tag
+        run: echo ${{steps.tag.outputs.tag}}
