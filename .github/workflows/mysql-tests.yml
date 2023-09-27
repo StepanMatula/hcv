@@ -8,7 +8,7 @@ jobs:
 
     services:
       mysql:
-        image: Dockerfile
+        image: mysql:latest
         ports:
           - 3306/tcp
         env:
