@@ -1,0 +1,36 @@
+name: MySQL Tests
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: Dockerfile-mysql
+        ports:
+          - 3306/tcp
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: test_database
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start MySQL Container
+        run: docker run -d -p 3306:3306 --name mysql-container Dockerfile-mysql
+
+      - name: Wait for MySQL to start
+        run: |
+          sleep 10
+
+      - name: Run Tests
+        run: |
+          # Run your tests here, using the MySQL container as the database host
+          # For example, if you're using a Python test runner like pytest:
+          pytest --db-host=localhost --db-port=3306 --db-user=root --db-password=root_password --db-name=test_database
+
+      - name: Stop MySQL Container
+        run: docker stop mysql-container && docker rm mysql-container
