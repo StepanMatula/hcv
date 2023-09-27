@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Start MySQL Container
-        run: docker run -d -p 3306:3306 --name mysql-container Dockerfile-mysql
+        run: docker run -d -p 3306:3306 --name mysql-container
 
       - name: Wait for MySQL to start
         run: |
