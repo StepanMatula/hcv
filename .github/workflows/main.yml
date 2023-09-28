@@ -20,12 +20,9 @@ jobs:
     # Optionally strip `v` prefix
      #     strip_v: true
       - name: get tag!
-        run: curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name'
-      - name: Use tag with variables
-        run: export V=${{steps.tag.outputs.tag}}
+        run: export V=$(curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name')
       - name: Create local changes
         run: |
-          export V=${{steps.tag.outputs.tag}}
           echo $V
           sed -i "s/version:.*/version: $V/g" Chart.yaml
           cat Chart.yaml
