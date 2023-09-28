@@ -20,7 +20,7 @@ jobs:
     # Optionally strip `v` prefix
      #     strip_v: true
       - name: get tag!
-        run: export V=$(curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name')
+        run: V=$(curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name')
       - name: Create local changes
         run: |
           echo $V
