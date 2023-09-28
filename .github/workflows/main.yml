@@ -1,9 +1,9 @@
 name: Get tag
 
 on:
-  workflow_run:
-    workflows: ["release-please"]
-    types: [completed]
+  push:
+    branches:
+      - master
 jobs:
   github_example_tags:
     runs-on: ubuntu-latest
