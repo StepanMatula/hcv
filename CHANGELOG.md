@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.8](https://github.com/StepanMatula/hcv/compare/v1.5.7...v1.5.8) (2023-09-28)
+
+
+### Bug Fixes
+
+* 5555 ([d49fe3d](https://github.com/StepanMatula/hcv/commit/d49fe3dc7d0b91f809ab02d750fe3f5bea850fbc))
+
 ## [1.5.6](https://github.com/StepanMatula/hcv/compare/v1.5.5...v1.5.6) (2023-09-28)
 
 
