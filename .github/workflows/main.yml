@@ -1,8 +1,9 @@
 name: Get tag
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+    - master
 jobs:
   github_example_tags:
     runs-on: ubuntu-latest
