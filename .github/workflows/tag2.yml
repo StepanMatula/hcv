@@ -19,7 +19,8 @@ jobs:
         with:
           tagRegex: "v(.*)"  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
       - name: Some other step # Output usage example
-        run: export V=${{ steps.tagName.outputs.tag }}
+        with:
+          tagname: ${{ steps.tagName.outputs.tag }}
       - name: Create local changes
         run: |
           export V=${{ steps.tagName.outputs.tag }}
