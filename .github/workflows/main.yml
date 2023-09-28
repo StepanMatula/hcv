@@ -19,12 +19,11 @@ jobs:
      #   with:
     # Optionally strip `v` prefix
      #     strip_v: true
-      - name: get tag!
-        run: V=$(curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name')
       - name: Create local changes
         run: |
-          echo $V
-          sed -i "s/version:.*/version: $V/g" Chart.yaml
+          C=$(curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name')
+          echo $C
+          sed -i "s/version:.*/version: $C/g" Chart.yaml
           cat Chart.yaml
       - name: Commit files
         run: |
