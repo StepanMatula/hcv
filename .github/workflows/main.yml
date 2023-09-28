@@ -2,8 +2,8 @@ name: Get tag
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - '*'
 jobs:
   github_example_tags:
     runs-on: ubuntu-latest
