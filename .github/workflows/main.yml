@@ -13,12 +13,14 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
+     # - name: Get tag
+     #   id: tag
+     #   uses: dawidd6/action-get-tag@v1
+     #   with:
     # Optionally strip `v` prefix
-          strip_v: true
+     #     strip_v: true
+      - name: get tag!
+        run: curl -s "https://api.github.com/repos/StepanMatula/hcv/releases/latest" | jq -r '.tag_name'
       - name: Use tag with variables
         run: export V=${{steps.tag.outputs.tag}}
       - name: Create local changes
