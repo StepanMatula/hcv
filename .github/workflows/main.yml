@@ -16,6 +16,9 @@ jobs:
       - name: Get tag
         id: tag
         uses: dawidd6/action-get-tag@v1
+        with:
+    # Optionally strip `v` prefix
+          strip_v: true
       - name: Use tag with variables
         run: export V=${{steps.tag.outputs.tag}}
       - name: Create local changes
