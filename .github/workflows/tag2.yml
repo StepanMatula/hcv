@@ -1,0 +1,42 @@
+name: Get tag 2
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  github_example_tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: little-core-labs/get-git-tag@v3.0.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"  # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+          tagRegexGroup: 1 # Optional. Default is 1.
+      - name: Some other step # Output usage example
+        with:
+          tagname: ${{ steps.tagName.outputs.tag }}
+      - name: Use tag with variables
+        run: export V=${{steps.tag.outputs.tag}}
+      - name: Create local changes
+        run: |
+          export V=${{ steps.tagName.outputs.tag }}
+          echo $V
+          sed -i "s/version:.*/version: $V/g" Chart.yaml
+          cat Chart.yaml
+      - name: Commit files
+        run: |
+          git checkout master
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Add changes"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: master
+          github_token: ${{ secrets.TOKEN }}
