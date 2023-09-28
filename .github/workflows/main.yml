@@ -1,8 +1,9 @@
 name: Get tag
 
 on:
-  release:
-    types: [created]
+  workflow_run:
+    workflows: ["release-please"]
+    types: [completed]
 jobs:
   github_example_tags:
     runs-on: ubuntu-latest
