@@ -17,3 +17,5 @@ jobs:
         with:
           release-type: node
           package-name: 1122334455
+      - name: cat env
+        run: env
